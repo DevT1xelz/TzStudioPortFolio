@@ -1583,7 +1583,7 @@ body {
     animation: imageLoad 0.6s ease-out;
 }
 
-/* Обновленные стили для секции прайс-листа с рамками */
+/* Обновленные стили для секции прайс-листа с расширенными блоками */
 .pricing {
     padding: 100px 0;
     background-color: var(--background);
@@ -1604,7 +1604,7 @@ body {
 
 .pricing-tables {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
     gap: 30px;
     margin-bottom: 50px;
 }
@@ -1692,6 +1692,7 @@ body {
     padding: 20px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     transition: var(--transition-smooth);
+    min-height: 70px;
 }
 
 .price-item:last-child {
@@ -1733,11 +1734,11 @@ body {
 .price-info {
     flex: 1;
     min-width: 0;
-    padding-right: 15px;
+    padding-right: 20px;
 }
 
 .price-info h4 {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     margin-bottom: 5px;
     color: var(--text);
     font-weight: 600;
@@ -1748,42 +1749,47 @@ body {
 
 .price-desc {
     color: var(--text-lighter);
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
 }
 
 .price-amount {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 120px;
+    min-width: 140px;
     background: rgba(126, 208, 126, 0.1);
-    padding: 10px 15px;
-    border-radius: 8px;
+    padding: 12px 20px;
+    border-radius: 10px;
     border: 1px solid rgba(126, 208, 126, 0.3);
     transition: var(--transition-bounce);
     white-space: nowrap;
+    height: 50px;
 }
 
 .price-item:hover .price-amount {
     background: rgba(126, 208, 126, 0.2);
     transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(126, 208, 126, 0.3);
+    box-shadow: 0 0 20px rgba(126, 208, 126, 0.3);
     border-color: var(--primary);
 }
 
 .price-amount span {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: var(--primary);
     text-shadow: 0 0 10px rgba(126, 208, 126, 0.3);
 }
 
 .price-amount .currency {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--text-lighter);
     font-weight: 500;
-    margin-left: 4px;
+    margin-left: 5px;
 }
 
 .pricing-note {
@@ -1841,36 +1847,53 @@ body {
 /* Адаптивность для прайс-листа */
 @media (max-width: 1200px) {
     .pricing-tables {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+}
+
+@media (max-width: 992px) {
+    .pricing-tables {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+    
+    .price-info h4 {
+        font-size: 1.1rem;
+    }
+    
+    .price-amount {
+        min-width: 130px;
+        padding: 10px 15px;
+    }
+    
+    .price-amount span {
+        font-size: 1.4rem;
     }
 }
 
 @media (max-width: 768px) {
     .pricing-tables {
         grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto 50px;
     }
     
     .pricing-table {
-        max-width: 500px;
-        margin: 0 auto;
+        width: 100%;
     }
     
     .pricing-note {
         flex-direction: column;
         text-align: center;
+        max-width: 500px;
+        margin: 0 auto;
     }
     
     .note-icon {
         margin: 0 auto;
     }
     
-    .price-amount {
-        min-width: 110px;
-        padding: 8px 12px;
-    }
-    
-    .price-amount span {
-        font-size: 1.3rem;
+    .price-desc {
+        max-width: 200px;
     }
 }
 
@@ -1879,14 +1902,17 @@ body {
         flex-direction: column;
         align-items: flex-start;
         gap: 15px;
+        min-height: auto;
+        padding: 25px 0;
     }
     
     .price-amount {
         align-self: flex-start;
         min-width: auto;
         width: 100%;
-        max-width: 200px;
+        max-width: 250px;
         justify-content: flex-start;
+        height: 45px;
     }
     
     .price-item.featured::before {
@@ -1894,14 +1920,33 @@ body {
         width: 25px;
         height: 25px;
         font-size: 1rem;
+        top: 40px;
     }
     
     .price-info {
         padding-right: 0;
         width: 100%;
     }
+    
+    .price-info h4 {
+        white-space: normal;
+        font-size: 1.2rem;
+    }
+    
+    .price-desc {
+        white-space: normal;
+        max-width: 100%;
+        font-size: 0.95rem;
+    }
+    
+    .price-amount span {
+        font-size: 1.6rem;
+    }
+    
+    .price-amount .currency {
+        font-size: 1.1rem;
+    }
 }
-
 
 
 
@@ -1939,3 +1984,4 @@ body {
 .price-item.featured {
     animation: featuredPulse 2s infinite;
 }
+
