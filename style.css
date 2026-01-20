@@ -1582,3 +1582,360 @@ body {
 .modal-image-container img.loaded {
     animation: imageLoad 0.6s ease-out;
 }
+
+/* Обновленные стили для секции прайс-листа с рамками */
+.pricing {
+    padding: 100px 0;
+    background-color: var(--background);
+    position: relative;
+}
+
+.pricing::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    animation: lineDraw 1.2s ease-out both;
+    transform-origin: left;
+}
+
+.pricing-tables {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.pricing-table {
+    background: var(--surface);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border);
+    transition: var(--transition-bounce);
+    position: relative;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.pricing-table:nth-child(1) { animation-delay: 0.1s; }
+.pricing-table:nth-child(2) { animation-delay: 0.3s; }
+.pricing-table:nth-child(3) { animation-delay: 0.5s; }
+
+.pricing-table:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 0 1px var(--primary);
+    border-color: var(--primary);
+}
+
+.pricing-table::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: var(--gradient);
+    opacity: 0.8;
+}
+
+.pricing-header {
+    padding: 30px 30px 20px;
+    text-align: center;
+    background: rgba(126, 208, 126, 0.05);
+    border-bottom: 1px solid var(--border);
+}
+
+.pricing-icon {
+    width: 70px;
+    height: 70px;
+    background: var(--gradient);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 1.8rem;
+    color: #000000;
+    box-shadow: 0 5px 15px var(--shadow-green);
+    transition: var(--transition-bounce);
+}
+
+.pricing-table:hover .pricing-icon {
+    transform: rotate(15deg) scale(1.1);
+    box-shadow: 0 8px 25px rgba(126, 208, 126, 0.7);
+}
+
+.pricing-header h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--primary-light);
+}
+
+.pricing-subtitle {
+    color: var(--text-lighter);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.pricing-content {
+    padding: 25px 30px;
+}
+
+.price-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition-smooth);
+}
+
+.price-item:last-child {
+    border-bottom: none;
+}
+
+.price-item:hover {
+    transform: translateX(5px);
+}
+
+.price-item.featured {
+    background: rgba(126, 208, 126, 0.08);
+    border-radius: 10px;
+    padding: 20px 15px;
+    margin: 0 -15px;
+    border: 1px solid rgba(126, 208, 126, 0.2);
+    position: relative;
+}
+
+.price-item.featured::before {
+    content: '🔥';
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    background: var(--gradient);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
+    font-weight: bold;
+    box-shadow: 0 0 15px rgba(126, 208, 126, 0.5);
+}
+
+.price-info {
+    flex: 1;
+    min-width: 0;
+    padding-right: 15px;
+}
+
+.price-info h4 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: var(--text);
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.price-desc {
+    color: var(--text-lighter);
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.price-amount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    background: rgba(126, 208, 126, 0.1);
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(126, 208, 126, 0.3);
+    transition: var(--transition-bounce);
+    white-space: nowrap;
+}
+
+.price-item:hover .price-amount {
+    background: rgba(126, 208, 126, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(126, 208, 126, 0.3);
+    border-color: var(--primary);
+}
+
+.price-amount span {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-shadow: 0 0 10px rgba(126, 208, 126, 0.3);
+}
+
+.price-amount .currency {
+    font-size: 0.9rem;
+    color: var(--text-lighter);
+    font-weight: 500;
+    margin-left: 4px;
+}
+
+.pricing-note {
+    background: var(--surface);
+    border-radius: 15px;
+    padding: 30px;
+    border: 1px solid var(--border-green);
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    animation: fadeInUp 0.8s ease-out 0.7s both;
+    position: relative;
+    overflow: hidden;
+}
+
+.pricing-note::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gradient);
+}
+
+.note-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--gradient);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: #000000;
+    flex-shrink: 0;
+}
+
+.note-content h4 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--primary-light);
+}
+
+.note-content p {
+    color: var(--text-light);
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.note-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Адаптивность для прайс-листа */
+@media (max-width: 1200px) {
+    .pricing-tables {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .pricing-tables {
+        grid-template-columns: 1fr;
+    }
+    
+    .pricing-table {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .pricing-note {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .note-icon {
+        margin: 0 auto;
+    }
+    
+    .price-amount {
+        min-width: 110px;
+        padding: 8px 12px;
+    }
+    
+    .price-amount span {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .price-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .price-amount {
+        align-self: flex-start;
+        min-width: auto;
+        width: 100%;
+        max-width: 200px;
+        justify-content: flex-start;
+    }
+    
+    .price-item.featured::before {
+        left: -8px;
+        width: 25px;
+        height: 25px;
+        font-size: 1rem;
+    }
+    
+    .price-info {
+        padding-right: 0;
+        width: 100%;
+    }
+}
+
+
+
+
+
+@keyframes priceItemAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pricing-table .price-item {
+    animation: priceItemAppear 0.5s ease-out forwards;
+    opacity: 0;
+}
+
+.pricing-table .price-item:nth-child(1) { animation-delay: 0.2s; }
+.pricing-table .price-item:nth-child(2) { animation-delay: 0.4s; }
+.pricing-table .price-item:nth-child(3) { animation-delay: 0.6s; }
+
+/* Анимация для выделенных элементов */
+@keyframes featuredPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(126, 208, 126, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(126, 208, 126, 0);
+    }
+}
+
+.price-item.featured {
+    animation: featuredPulse 2s infinite;
+}
