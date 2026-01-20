@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     animateCounters();
     initScrollAnimations();
     initParallax();
+    initPricingAnimations();
 });
 
 function initNavigation() {
@@ -40,6 +41,14 @@ function initNavigation() {
             
             const navMenu = document.querySelector('.nav-menu');
             navMenu.classList.remove('active');
+            
+            const toggle = document.querySelector('.mobile-toggle');
+            if (toggle) {
+                const icon = toggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                toggle.style.transform = 'rotate(0)';
+            }
         });
     });
 }
@@ -125,19 +134,67 @@ function initScrollAnimations() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
+                
+                if (entry.target.classList.contains('pricing-table')) {
+                    const priceItems = entry.target.querySelectorAll('.price-item');
+                    priceItems.forEach((item, index) => {
+                        setTimeout(() => {
+                            item.style.animation = `priceItemAppear 0.5s ease-out forwards`;
+                            item.style.opacity = '1';
+                        }, index * 200);
+                    });
+                }
             }
         });
     }, observerOptions);
     
-    const elementsToAnimate = document.querySelectorAll('.portfolio-item, .feature, .contact-card, .section-header, .about-content');
+    const elementsToAnimate = document.querySelectorAll(
+        '.portfolio-item, .feature, .contact-card, .section-header, ' +
+        '.about-content, .pricing-table, .pricing-note'
+    );
+    
     elementsToAnimate.forEach(el => {
         el.classList.add('animate-on-scroll');
         observer.observe(el);
     });
 }
 
+function initPricingAnimations() {
+    const pricingTables = document.querySelectorAll('.pricing-table');
+    
+    pricingTables.forEach((table, index) => {
+        table.style.animationDelay = `${index * 0.2}s`;
+        
+        const priceItems = table.querySelectorAll('.price-item');
+        priceItems.forEach((item, itemIndex) => {
+            item.style.animationDelay = `${(index * 0.2) + (itemIndex * 0.1)}s`;
+        });
+    });
+    
+    const featuredItems = document.querySelectorAll('.price-item.featured');
+    featuredItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateX(5px) scale(1.02)';
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateX(5px) scale(1)';
+        });
+    });
+}
+
 function initContactLinks() {
     console.log('Контактные ссылки инициализированы');
+    
+    const contactLinks = document.querySelectorAll('.contact-link');
+    contactLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.stopPropagation();
+            console.log('Переход по контактной ссылке:', this.href);
+            
+            showNotification('Открываем ссылку...', 'success');
+        });
+    });
 }
 
 function showNotification(message, type = 'success') {
@@ -163,6 +220,8 @@ function showNotification(message, type = 'success') {
         animation: notificationSlideIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         font-weight: 600;
         max-width: 350px;
+        cursor: pointer;
+        transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
     `;
     
     const contentStyle = `
@@ -176,13 +235,34 @@ function showNotification(message, type = 'success') {
     
     document.body.appendChild(notification);
     
-    setTimeout(() => {
-        notification.style.animation = 'notificationSlideOut 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+    notification.addEventListener('click', function() {
+        this.style.animation = 'notificationSlideOut 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
         setTimeout(() => {
-            if (notification.parentNode) {
-                document.body.removeChild(notification);
+            if (this.parentNode) {
+                document.body.removeChild(this);
             }
         }, 400);
+    });
+    
+    notification.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-3px)';
+        this.style.boxShadow = '0 8px 25px rgba(0,0,0,0.4)';
+    });
+    
+    notification.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+        this.style.boxShadow = '0 5px 20px rgba(0,0,0,0.3)';
+    });
+    
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.style.animation = 'notificationSlideOut 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    document.body.removeChild(notification);
+                }
+            }, 400);
+        }
     }, 4000);
 }
 
@@ -192,22 +272,24 @@ function initPortfolio() {
     if (!portfolioGrid) return;
     
     const portfolioItems = [
-        { id: 1, name: "Магический спавн", desc: "Спавн, с элементами фиолетовой магии с использованием средневекового стиля", tags: ["Спавн", "Интерьер"], image: "1.png" },
+        { id: 1, name: "Магический спавн", desc: "Спавн, с элементами фиолетовой магии с использованием средневекового стиля", tags: ["Спавн", "Интерьер", "75x75"], image: "1.png" },
         { id: 2, name: "Нефтяная вышка", desc: "Нефтяная платформа с обилием детализированных декораций и технических элементов", tags: ["Детализированный", "Индустриальная"], image: "2.png" },
-        { id: 3, name: "Песочный спавн", desc: "Детализированный песочный спавн, с нотками старых веков", tags: ["Спавн", "Детализированный"], image: "3.png" },
+        { id: 3, name: "Песочный спавн", desc: "Детализированный песочный спавн, с нотками старых веков", tags: ["Спавн", "Детализированный", "125x125"], image: "3.png" },
         { id: 4, name: "Средневековый замок", desc: "Величественный замок с высокими башнями, окруженный большими деревьями", tags: ["Средневековье"], image: "4.png" },
-        { id: 5, name: "Фэнтези спавн", desc: "Фэнтезийный спавн с яркими зданиями, красочными крышами и небольшими горами вокруг", tags: ["Спавн", "Фэнтези"], image: "5.png" },
-        { id: 6, name: "Итальянский спавн", desc: "Спавн в итальянском стиле с характерными зданиями, терраформингом и небольшими деревьями", tags: ["Спавн", "Терраформинг"], image: "6.png" },
-        { id: 7, name: "Зеленый холм", desc: "Холм, окруженный водой, с горами по краям", tags: ["Горы"], image: "7.png" },
+        { id: 5, name: "Фэнтези спавн", desc: "Фэнтезийный спавн с яркими зданиями, красочными крышами и небольшими горами вокруг", tags: ["Спавн", "Фэнтези", "100x100"], image: "5.png" },
+        { id: 6, name: "Итальянский спавн", desc: "Спавн в итальянском стиле с характерными зданиями, терраформингом и небольшими деревьями", tags: ["Спавн", "Терраформинг", "150x150"], image: "6.png" },
+        { id: 7, name: "Зеленый холм", desc: "Холм, окруженный водой, с горами по краям", tags: ["Горы", "100x100"], image: "7.png" },
         { id: 8, name: "Подземелье RPG", desc: "Детализированное модовое RPG-подземелье с множеством комнат и проработанным интерьером", tags: ["Интерьер", "Детализированный"], image: "8.png" },
         { id: 9, name: "Подземелье с аметистовым сердцем", desc: "Детализированное RPG-подземелье с центральным элементом - аметистовым сердцем", tags: ["Подземелье", "Интерьер", "Фэнтези"], image: "9.png" },
-        { id: 10, name: "Весенние острова", desc: "Спавн на левитирующих островах с весенней атмосферой и цветущими деревьями", tags: ["Спавн", "Фэнтези"], image: "10.png" },
+        { id: 10, name: "Весенние острова", desc: "Спавн на левитирующих островах с весенней атмосферой и цветущими деревьями", tags: ["Спавн", "Фэнтези", "75x75"], image: "10.png" },
         { id: 11, name: "Детализированный игровой остров", desc: "Остров с детализированными проходами и локациями, созданный для мини-игр", tags: ["Детализированный", "Для мини-игр"], image: "11.png" },
         { id: 12, name: "Деревня в горах", desc: "Небольшая деревня, затерянная среди гигантских горных хребтов", tags: ["Город"], image: "12.png" },
-        { id: 13, name: "Постройка из God of War", desc: "Реплика или вдохновленная вселенной God of War постройка", tags: ["Детализированный"], image: "13.png" },
+        { id: 13, name: "Постройка из God of War", desc: "Реплика или вдохновленная вселенной God of War постройка", tags: ["Детализированный", "750x750"], image: "13.png" },
         { id: 14, name: "Песочный город", desc: "Город, построенный из блоков красного песка и песчаника", tags: ["Город", "Детализированный"], image: "14.png" },
         { id: 15, name: "Средневековая комната", desc: "Детализированный комната в средневековом стиле", tags: ["Интерьер", "Средневековье", "Детализированный"], image: "15.png" },
-        { id: 16, name: "Королевский зал", desc: "Величественный тронный или банкетный зал с украшенными столбами, декором и длинным коридором", tags: ["Средневековье", "Детализированный"], image: "16.png" }
+        { id: 16, name: "Королевский зал", desc: "Величественный тронный или банкетный зал с украшенными столбами, декором и длинным коридором", tags: ["Средневековье", "Детализированный"], image: "16.png" },
+        { id: 17, name: "Средневековый спавн", desc: "Детализированный комната в средневековом стиле", tags: ["Средневековье", "Детализированный", "150х150"], image: "17.png" },
+        { id: 18, name: "Средневековый спавн", desc: "Превосходный спавн в стиле средневековье с качественной проработкой ландшафта", tags: ["Средневековье", "Детализированный", "500x500"], image: "18.png" }
     ];
     
     function displayPortfolioItems() {
@@ -236,10 +318,12 @@ function initPortfolio() {
             
             portfolioItem.addEventListener('mouseenter', function() {
                 this.style.zIndex = '10';
+                this.style.transform = 'translateY(-10px) scale(1.02)';
             });
             
             portfolioItem.addEventListener('mouseleave', function() {
                 this.style.zIndex = '1';
+                this.style.transform = 'translateY(-10px) scale(1)';
             });
             
             portfolioGrid.appendChild(portfolioItem);
@@ -291,6 +375,13 @@ function initModal() {
             closeModal();
         }
     });
+    
+    const modalImage = document.getElementById('modalImage');
+    if (modalImage) {
+        modalImage.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    }
 }
 
 function openModal(item) {
@@ -299,6 +390,7 @@ function openModal(item) {
     const modalTitle = document.getElementById('modalTitle');
     const modalDescription = document.getElementById('modalDescription');
     const modalTags = document.getElementById('modalTags');
+    
     modalImage.src = `images/${item.image}`;
     modalImage.alt = item.name;
     modalTitle.textContent = item.name;
@@ -318,12 +410,14 @@ function openModal(item) {
     modal.querySelector('.modal-content').style.animation = 'modalContentAppear 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
     
     modalImage.onload = function() {
+        this.classList.add('loaded');
         this.style.opacity = '1';
         this.style.transform = 'scale(1)';
     };
     
     modalImage.onerror = function() {
         this.src = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600"><rect width="800" height="600" fill="%231a1a1a"/><rect width="800" height="80" y="520" fill="%232a2a2a"/><text x="400" y="300" font-family="Inter" font-size="32" fill="%237ed07e" text-anchor="middle" font-weight="600">${item.name}</text><text x="400" y="350" font-family="Inter" font-size="18" fill="%23b8d8b8" text-anchor="middle">${item.desc}</text><text x="400" y="570" font-family="Inter" font-size="16" fill="%238aa88a" text-anchor="middle">Изображение: ${item.image}</text></svg>`;
+        this.classList.add('loaded');
         this.style.opacity = '1';
         this.style.transform = 'scale(1)';
     };
@@ -347,6 +441,7 @@ function closeModal() {
         modal.style.display = 'none';
         document.body.style.overflow = 'auto';
         modal.querySelector('.modal-content').style.animation = '';
+        modalImage.classList.remove('loaded');
     }, 400);
 }
 
@@ -420,8 +515,29 @@ style.textContent = `
         }
     }
     
+    @keyframes priceItemAppear {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes featuredPulse {
+        0%, 100% {
+            box-shadow: 0 0 0 0 rgba(126, 208, 126, 0.4);
+        }
+        50% {
+            box-shadow: 0 0 0 10px rgba(126, 208, 126, 0);
+        }
+    }
+    
     .notification {
         cursor: pointer;
+        transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
     }
     
     .notification:hover {
@@ -446,6 +562,11 @@ style.textContent = `
     
     .portfolio-item:hover .portfolio-image {
         transform: scale(1.1);
+    }
+    
+    .price-item.featured {
+        animation: featuredPulse 2s infinite;
+        position: relative;
     }
 `;
 document.head.appendChild(style);
