@@ -163,12 +163,22 @@ function initPricingAnimations() {
     const pricingTables = document.querySelectorAll('.pricing-table');
     
     pricingTables.forEach((table, index) => {
-        table.style.animationDelay = `${index * 0.2}s`;
+        table.style.animationDelay = `${index * 0.15}s`;
         
         const priceItems = table.querySelectorAll('.price-item');
         priceItems.forEach((item, itemIndex) => {
-            item.style.animationDelay = `${(index * 0.2) + (itemIndex * 0.1)}s`;
+            item.style.animationDelay = `${(index * 0.15) + (itemIndex * 0.1)}s`;
         });
+    });
+    
+    // Добавляем специальный стиль для кнопки "Индив. цена"
+    const priceAmounts = document.querySelectorAll('.price-amount');
+    priceAmounts.forEach(price => {
+        const priceText = price.textContent || '';
+        if (priceText.includes('Индив.') || priceText.includes('Индив')) {
+            price.classList.add('special');
+            price.innerHTML = '<span>Индив.</span><span class="currency">цена</span>';
+        }
     });
     
     const featuredItems = document.querySelectorAll('.price-item.featured');
@@ -179,6 +189,28 @@ function initPricingAnimations() {
         
         item.addEventListener('mouseleave', function() {
             this.style.transform = 'translateX(5px) scale(1)';
+        });
+    });
+    
+    // Анимация для специальных цен
+    const specialPrices = document.querySelectorAll('.price-amount.special');
+    specialPrices.forEach(price => {
+        price.addEventListener('mouseenter', function() {
+            this.style.background = 'linear-gradient(135deg, rgba(126, 208, 126, 0.3), rgba(74, 140, 74, 0.3))';
+            this.style.borderColor = 'var(--primary-light)';
+            this.style.boxShadow = '0 0 20px rgba(126, 208, 126, 0.4)';
+        });
+        
+        price.addEventListener('mouseleave', function() {
+            this.style.background = 'linear-gradient(135deg, rgba(126, 208, 126, 0.2), rgba(74, 140, 74, 0.2))';
+            this.style.borderColor = 'var(--primary)';
+            this.style.boxShadow = 'none';
+        });
+        
+        // Добавляем клик для показа уведомления
+        price.addEventListener('click', function(e) {
+            e.stopPropagation();
+            showNotification('Для обсуждения индивидуального проекта свяжитесь с менеджером в Telegram', 'info');
         });
     });
 }
@@ -200,19 +232,32 @@ function initContactLinks() {
 function showNotification(message, type = 'success') {
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
+    
+    let icon = 'check-circle';
+    if (type === 'info') icon = 'info-circle';
+    if (type === 'warning') icon = 'exclamation-triangle';
+    if (type === 'error') icon = 'exclamation-circle';
+    
     notification.innerHTML = `
         <div class="notification-content">
-            <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+            <i class="fas fa-${icon}"></i>
             <span>${message}</span>
         </div>
     `;
+    
+    const bgColor = type === 'success' ? 'var(--gradient)' : 
+                   type === 'info' ? 'linear-gradient(135deg, #3498db, #2980b9)' :
+                   type === 'warning' ? 'linear-gradient(135deg, #f39c12, #e67e22)' :
+                   'linear-gradient(135deg, #e74c3c, #c0392b)';
+    
+    const textColor = type === 'success' ? '#000000' : 'white';
     
     notification.style.cssText = `
         position: fixed;
         top: 20px;
         right: 20px;
-        background: ${type === 'success' ? 'var(--gradient)' : 'linear-gradient(135deg, #ff6b6b, #ee5a52)'};
-        color: ${type === 'success' ? '#000000' : 'white'};
+        background: ${bgColor};
+        color: ${textColor};
         padding: 15px 25px;
         border-radius: 10px;
         box-shadow: 0 5px 20px rgba(0,0,0,0.3);
@@ -272,24 +317,22 @@ function initPortfolio() {
     if (!portfolioGrid) return;
     
     const portfolioItems = [
-        { id: 1, name: "Магический спавн", desc: "Спавн, с элементами фиолетовой магии с использованием средневекового стиля", tags: ["Спавн", "Интерьер", "75x75"], image: "1.png" },
+        { id: 1, name: "Магический спавн", desc: "Спавн, с элементами фиолетовой магии с использованием средневекового стиля", tags: ["Спавн", "Интерьер"], image: "1.png" },
         { id: 2, name: "Нефтяная вышка", desc: "Нефтяная платформа с обилием детализированных декораций и технических элементов", tags: ["Детализированный", "Индустриальная"], image: "2.png" },
-        { id: 3, name: "Песочный спавн", desc: "Детализированный песочный спавн, с нотками старых веков", tags: ["Спавн", "Детализированный", "125x125"], image: "3.png" },
+        { id: 3, name: "Песочный спавн", desc: "Детализированный песочный спавн, с нотками старых веков", tags: ["Спавн", "Детализированный"], image: "3.png" },
         { id: 4, name: "Средневековый замок", desc: "Величественный замок с высокими башнями, окруженный большими деревьями", tags: ["Средневековье"], image: "4.png" },
-        { id: 5, name: "Фэнтези спавн", desc: "Фэнтезийный спавн с яркими зданиями, красочными крышами и небольшими горами вокруг", tags: ["Спавн", "Фэнтези", "100x100"], image: "5.png" },
-        { id: 6, name: "Итальянский спавн", desc: "Спавн в итальянском стиле с характерными зданиями, терраформингом и небольшими деревьями", tags: ["Спавн", "Терраформинг", "150x150"], image: "6.png" },
-        { id: 7, name: "Зеленый холм", desc: "Холм, окруженный водой, с горами по краям", tags: ["Горы", "100x100"], image: "7.png" },
+        { id: 5, name: "Фэнтези спавн", desc: "Фэнтезийный спавн с яркими зданиями, красочными крышами и небольшими горами вокруг", tags: ["Спавн", "Фэнтези"], image: "5.png" },
+        { id: 6, name: "Итальянский спавн", desc: "Спавн в итальянском стиле с характерными зданиями, терраформингом и небольшими деревьями", tags: ["Спавн", "Терраформинг"], image: "6.png" },
+        { id: 7, name: "Зеленый холм", desc: "Холм, окруженный водой, с горами по краям", tags: ["Горы"], image: "7.png" },
         { id: 8, name: "Подземелье RPG", desc: "Детализированное модовое RPG-подземелье с множеством комнат и проработанным интерьером", tags: ["Интерьер", "Детализированный"], image: "8.png" },
         { id: 9, name: "Подземелье с аметистовым сердцем", desc: "Детализированное RPG-подземелье с центральным элементом - аметистовым сердцем", tags: ["Подземелье", "Интерьер", "Фэнтези"], image: "9.png" },
-        { id: 10, name: "Весенние острова", desc: "Спавн на левитирующих островах с весенней атмосферой и цветущими деревьями", tags: ["Спавн", "Фэнтези", "75x75"], image: "10.png" },
+        { id: 10, name: "Весенние острова", desc: "Спавн на левитирующих островах с весенней атмосферой и цветущими деревьями", tags: ["Спавн", "Фэнтези"], image: "10.png" },
         { id: 11, name: "Детализированный игровой остров", desc: "Остров с детализированными проходами и локациями, созданный для мини-игр", tags: ["Детализированный", "Для мини-игр"], image: "11.png" },
         { id: 12, name: "Деревня в горах", desc: "Небольшая деревня, затерянная среди гигантских горных хребтов", tags: ["Город"], image: "12.png" },
-        { id: 13, name: "Постройка из God of War", desc: "Реплика или вдохновленная вселенной God of War постройка", tags: ["Детализированный", "750x750"], image: "13.png" },
+        { id: 13, name: "Постройка из God of War", desc: "Реплика или вдохновленная вселенной God of War постройка", tags: ["Детализированный"], image: "13.png" },
         { id: 14, name: "Песочный город", desc: "Город, построенный из блоков красного песка и песчаника", tags: ["Город", "Детализированный"], image: "14.png" },
         { id: 15, name: "Средневековая комната", desc: "Детализированный комната в средневековом стиле", tags: ["Интерьер", "Средневековье", "Детализированный"], image: "15.png" },
-        { id: 16, name: "Королевский зал", desc: "Величественный тронный или банкетный зал с украшенными столбами, декором и длинным коридором", tags: ["Средневековье", "Детализированный"], image: "16.png" },
-        { id: 17, name: "Средневековый спавн", desc: "Отличный, простой спавн в стилистике средневековье", tags: ["Средневековье", "Детализированный", "150х150"], image: "17.png" },
-        { id: 18, name: "Средневековый спавн", desc: "Превосходный спавн в стиле средневековье с качественной проработкой ландшафта", tags: ["Средневековье", "Детализированный", "500x500"], image: "18.png" }
+        { id: 16, name: "Королевский зал", desc: "Величественный тронный или банкетный зал с украшенными столбами, декором и длинным коридором", tags: ["Средневековье", "Детализированный"], image: "16.png" }
     ];
     
     function displayPortfolioItems() {
@@ -535,6 +578,15 @@ style.textContent = `
         }
     }
     
+    @keyframes specialPriceGlow {
+        0%, 100% {
+            box-shadow: 0 0 10px rgba(126, 208, 126, 0.3);
+        }
+        50% {
+            box-shadow: 0 0 20px rgba(126, 208, 126, 0.5);
+        }
+    }
+    
     .notification {
         cursor: pointer;
         transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
@@ -568,6 +620,10 @@ style.textContent = `
         animation: featuredPulse 2s infinite;
         position: relative;
     }
+    
+    .price-amount.special {
+        animation: specialPriceGlow 2s infinite;
+        cursor: pointer;
+    }
 `;
 document.head.appendChild(style);
-
