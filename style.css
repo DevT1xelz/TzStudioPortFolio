@@ -1985,3 +1985,59 @@ body {
     animation: featuredPulse 2s infinite;
 }
 
+
+/* Обновленные стили для 4 блоков прайс-листа */
+.pricing-tables {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.pricing-table:nth-child(1) { animation-delay: 0.1s; }
+.pricing-table:nth-child(2) { animation-delay: 0.2s; }
+.pricing-table:nth-child(3) { animation-delay: 0.3s; }
+.pricing-table:nth-child(4) { animation-delay: 0.4s; }
+
+/* Стили для специальной цены "Индив." */
+.price-amount.special {
+    background: linear-gradient(135deg, rgba(126, 208, 126, 0.2), rgba(74, 140, 74, 0.2));
+    border: 1px solid var(--primary);
+}
+
+.price-amount.special span {
+    font-size: 1.3rem;
+    color: var(--primary-light);
+}
+
+.price-amount.special .currency {
+    color: var(--text);
+    font-weight: 600;
+}
+
+/* Адаптивность для 4 блоков */
+@media (max-width: 1200px) {
+    .pricing-tables {
+        grid-template-columns: repeat(2, minmax(350px, 1fr));
+    }
+}
+
+@media (max-width: 992px) {
+    .pricing-tables {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .pricing-tables {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto 50px;
+    }
+}
+
+@media (max-width: 576px) {
+    .pricing-tables {
+        max-width: 100%;
+    }
+}
