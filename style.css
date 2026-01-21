@@ -1583,7 +1583,7 @@ body {
     animation: imageLoad 0.6s ease-out;
 }
 
-/* Обновленные стили для секции прайс-листа с расширенными блоками */
+/* Обновленные стили для секции прайс-листа с сеткой 2x2 */
 .pricing {
     padding: 100px 0;
     background-color: var(--background);
@@ -1604,7 +1604,7 @@ body {
 
 .pricing-tables {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 30px;
     margin-bottom: 50px;
 }
@@ -1622,8 +1622,9 @@ body {
 }
 
 .pricing-table:nth-child(1) { animation-delay: 0.1s; }
-.pricing-table:nth-child(2) { animation-delay: 0.3s; }
-.pricing-table:nth-child(3) { animation-delay: 0.5s; }
+.pricing-table:nth-child(2) { animation-delay: 0.2s; }
+.pricing-table:nth-child(3) { animation-delay: 0.3s; }
+.pricing-table:nth-child(4) { animation-delay: 0.4s; }
 
 .pricing-table:hover {
     transform: translateY(-15px);
@@ -1792,6 +1793,23 @@ body {
     margin-left: 5px;
 }
 
+/* Специальный стиль для "Индив. цена" */
+.price-amount.special {
+    background: linear-gradient(135deg, rgba(126, 208, 126, 0.2), rgba(74, 140, 74, 0.2));
+    border: 1px solid var(--primary);
+    cursor: pointer;
+}
+
+.price-amount.special span {
+    font-size: 1.3rem;
+    color: var(--primary-light);
+}
+
+.price-amount.special .currency {
+    color: var(--text);
+    font-weight: 600;
+}
+
 .pricing-note {
     background: var(--surface);
     border-radius: 15px;
@@ -1803,6 +1821,8 @@ body {
     animation: fadeInUp 0.8s ease-out 0.7s both;
     position: relative;
     overflow: hidden;
+    grid-column: 1 / -1;
+    margin-top: 20px;
 }
 
 .pricing-note::before {
@@ -1847,13 +1867,15 @@ body {
 /* Адаптивность для прайс-листа */
 @media (max-width: 1200px) {
     .pricing-tables {
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
     }
 }
 
 @media (max-width: 992px) {
     .pricing-tables {
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
     }
     
     .price-info h4 {
@@ -1875,6 +1897,7 @@ body {
         grid-template-columns: 1fr;
         max-width: 500px;
         margin: 0 auto 50px;
+        gap: 30px;
     }
     
     .pricing-table {
@@ -1885,7 +1908,7 @@ body {
         flex-direction: column;
         text-align: center;
         max-width: 500px;
-        margin: 0 auto;
+        margin: 30px auto 0;
     }
     
     .note-icon {
@@ -1946,98 +1969,8 @@ body {
     .price-amount .currency {
         font-size: 1.1rem;
     }
-}
-
-
-
-
-@keyframes priceItemAppear {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.pricing-table .price-item {
-    animation: priceItemAppear 0.5s ease-out forwards;
-    opacity: 0;
-}
-
-.pricing-table .price-item:nth-child(1) { animation-delay: 0.2s; }
-.pricing-table .price-item:nth-child(2) { animation-delay: 0.4s; }
-.pricing-table .price-item:nth-child(3) { animation-delay: 0.6s; }
-
-/* Анимация для выделенных элементов */
-@keyframes featuredPulse {
-    0%, 100% {
-        box-shadow: 0 0 0 0 rgba(126, 208, 126, 0.4);
-    }
-    50% {
-        box-shadow: 0 0 0 10px rgba(126, 208, 126, 0);
-    }
-}
-
-.price-item.featured {
-    animation: featuredPulse 2s infinite;
-}
-
-
-/* Обновленные стили для 4 блоков прайс-листа */
-.pricing-tables {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 30px;
-    margin-bottom: 50px;
-}
-
-.pricing-table:nth-child(1) { animation-delay: 0.1s; }
-.pricing-table:nth-child(2) { animation-delay: 0.2s; }
-.pricing-table:nth-child(3) { animation-delay: 0.3s; }
-.pricing-table:nth-child(4) { animation-delay: 0.4s; }
-
-/* Стили для специальной цены "Индив." */
-.price-amount.special {
-    background: linear-gradient(135deg, rgba(126, 208, 126, 0.2), rgba(74, 140, 74, 0.2));
-    border: 1px solid var(--primary);
-}
-
-.price-amount.special span {
-    font-size: 1.3rem;
-    color: var(--primary-light);
-}
-
-.price-amount.special .currency {
-    color: var(--text);
-    font-weight: 600;
-}
-
-/* Адаптивность для 4 блоков */
-@media (max-width: 1200px) {
-    .pricing-tables {
-        grid-template-columns: repeat(2, minmax(350px, 1fr));
-    }
-}
-
-@media (max-width: 992px) {
-    .pricing-tables {
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    }
-}
-
-@media (max-width: 768px) {
-    .pricing-tables {
-        grid-template-columns: 1fr;
-        max-width: 500px;
-        margin: 0 auto 50px;
-    }
-}
-
-@media (max-width: 576px) {
-    .pricing-tables {
-        max-width: 100%;
+    
+    .price-amount.special span {
+        font-size: 1.4rem;
     }
 }
