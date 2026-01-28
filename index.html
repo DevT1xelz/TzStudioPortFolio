@@ -25,6 +25,7 @@
                     <li><a href="#home" class="nav-link active">Главная</a></li>
                     <li><a href="#about" class="nav-link">О нас</a></li>
                     <li><a href="#pricing" class="nav-link">Цены</a></li>
+                    <li><a href="#calculator" class="nav-link">Калькулятор стоимости</a></li>
                     <li><a href="#portfolio" class="nav-link">Портфолио</a></li>
                     <li><a href="#contact" class="nav-link">Контакты</a></li>
                 </ul>
@@ -65,8 +66,8 @@
                         <a href="#about" class="btn btn-primary">
                             <i class="fas fa-info-circle"></i> О нас
                         </a>
-                        <a href="#pricing" class="btn btn-secondary">
-                            <i class="fas fa-tags"></i> Наши цены
+                        <a href="#calculator" class="btn btn-secondary">
+                            <i class="fas fa-calculator"></i> Рассчитать стоимость
                         </a>
                     </div>
                 </div>
@@ -151,184 +152,348 @@
         </div>
     </section>
 
-<section id="pricing" class="pricing">
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Наши цены</h2>
+                <p class="section-subtitle">Стоимость услуг по строительству в Minecraft</p>
+            </div>
+            
+            <div class="pricing-tables">
+                <!-- Спавны -->
+                <div class="pricing-table animate-on-scroll">
+                    <div class="pricing-header">
+                        <div class="pricing-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3>Спавны</h3>
+                        <p class="pricing-subtitle">Размер 100×100 блоков</p>
+                    </div>
+                    <div class="pricing-content">
+                        <div class="price-item">
+                            <div class="price-info">
+                                <h4>Лёгкий стиль</h4>
+                                <p class="price-desc">(Средневековый)</p>
+                            </div>
+                            <div class="price-amount">
+                                <span>1 250</span><span class="currency">₽</span>
+                            </div>
+                        </div>
+                        <div class="price-item">
+                            <div class="price-info">
+                                <h4>Средний стиль</h4>
+                                <p class="price-desc">(Фэнтези)</p>
+                            </div>
+                            <div class="price-amount">
+                                <span>1 750</span><span class="currency">₽</span>
+                            </div>
+                        </div>
+                        <div class="price-item featured">
+                            <div class="price-info">
+                                <h4>Тяжёлый стиль</h4>
+                                <p class="price-desc">(Готический)</p>
+                            </div>
+                            <div class="price-amount">
+                                <span>2 500</span><span class="currency">₽</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Хабы -->
+                <div class="pricing-table animate-on-scroll">
+                    <div class="pricing-header">
+                        <div class="pricing-icon">
+                            <i class="fas fa-compass"></i>
+                        </div>
+                        <h3>Хабы</h3>
+                        <p class="pricing-subtitle">Размер 50×50 блоков</p>
+                    </div>
+                    <div class="pricing-content">
+                        <div class="price-item">
+                            <div class="price-info">
+                                <h4>Лёгкий стиль</h4>
+                                <p class="price-desc">(Средневековый)</p>
+                            </div>
+                            <div class="price-amount">
+                                <span>750</span><span class="currency">₽</span>
+                            </div>
+                        </div>
+                        <div class="price-item">
+                            <div class="price-info">
+                                <h4>Средний стиль</h4>
+                                <p class="price-desc">(Фэнтези)</p>
+                            </div>
+                            <div class="price-amount">
+                                <span>1 250</span><span class="currency">₽</span>
+                            </div>
+                        </div>
+                        <div class="price-item">
+                            <div class="price-info">
+                                <h4>Тяжёлый стиль</h4>
+                                <p class="price-desc">(Готический)</p>
+                            </div>
+                            <div class="price-amount">
+                                <span>2 000</span><span class="currency">₽</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Другие услуги -->
+                <div class="pricing-table animate-on-scroll">
+                    <div class="pricing-header">
+                        <div class="pricing-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3>Другие услуги</h3>
+                        <p class="pricing-subtitle">Специализированные проекты</p>
+                    </div>
+                    <div class="pricing-content">
+                        <div class="price-item">
+                            <div class="price-info">
+                                <h4>Карты для мини-игр</h4>
+                                <p class="price-desc">BedWars, Eggwars, Skywars</p>
+                            </div>
+                            <div class="price-amount">
+                                <span>1 750</span><span class="currency">₽</span>
+                            </div>
+                        </div>
+                        <div class="price-item">
+                            <div class="price-info">
+                                <h4>Данжи / Подземелья</h4>
+                                <p class="price-desc">100×100 + сложность</p>
+                            </div>
+                            <div class="price-amount">
+                                <span>1 750</span><span class="currency">₽</span>
+                            </div>
+                        </div>
+                        <div class="price-item featured">
+                            <div class="price-info">
+                                <h4>РПГ-локации</h4>
+                                <p class="price-desc">Проработанные 100×100</p>
+                            </div>
+                            <div class="price-amount">
+                                <span>2 000</span><span class="currency">₽</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pricing-note animate-on-scroll">
+                <div class="note-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="note-content">
+                    <h4>Важная информация</h4>
+                    <p>Стоимость зависит от размера проекта. Например, спавн 200×200 блоков будет стоить от 2 500₽. 
+                    Цена также варьируется в зависимости от сложности, детализации и индивидуальных требований заказчика.</p>
+                    <p>Для получения точного расчета стоимости вашего проекта используйте наш калькулятор или свяжитесь с нами через Telegram или FunPay.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Калькулятор стоимости -->
+<section id="calculator" class="calculator">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title">Наши цены</h2>
-            <p class="section-subtitle">Стоимость услуг по строительству в Minecraft</p>
+            <h2 class="section-title">Калькулятор стоимости</h2>
+            <p class="section-subtitle">Рассчитайте примерную стоимость вашего проекта</p>
         </div>
         
-        <div class="pricing-tables">
-            <!-- Спавны -->
-            <div class="pricing-table animate-on-scroll">
-                <div class="pricing-header">
-                    <div class="pricing-icon">
-                        <i class="fas fa-home"></i>
+        <div class="calculator-wrapper">
+            <div class="calculator-steps">
+                <!-- Шаг 1: Выбор типа проекта -->
+                <div class="calc-step active" id="step-type">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <h3><i class="fas fa-cube"></i> Тип проекта</h3>
                     </div>
-                    <h3>Спавны</h3>
-                    <p class="pricing-subtitle">Размер 100×100 блоков</p>
+                    <div class="step-content">
+                        <div class="type-selector">
+                            <div class="type-option active" data-type="spawn" data-base="1250">
+                                <div class="type-icon">
+                                    <i class="fas fa-home"></i>
+                                </div>
+                                <h4>Спавн</h4>
+                                <p>Главная точка возрождения игроков</p>
+                                <div class="type-price">100×100: 1 250₽</div>
+                            </div>
+                            
+                            <div class="type-option" data-type="hub" data-base="750">
+                                <div class="type-icon">
+                                    <i class="fas fa-compass"></i>
+                                </div>
+                                <h4>Хаб</h4>
+                                <p>Центральное место для выбора игр</p>
+                                <div class="type-price">50×50: 750₽</div>
+                            </div>
+                            
+                            <div class="type-option" data-type="other" data-base="1750">
+                                <div class="type-icon">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                                <h4>Другой</h4>
+                                <p>Карты, данжи, локации</p>
+                                <div class="type-price">100×100: 1 750₽</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="pricing-content">
-                    <div class="price-item">
-                        <div class="price-info">
-                            <h4>Лёгкий стиль</h4>
-                            <p class="price-desc">Средневековый стиль</p>
-                        </div>
-                        <div class="price-amount">
-                            <span>1 250</span><span class="currency">₽</span>
+                
+                <!-- Шаг 2: Выбор сложности -->
+                <div class="calc-step" id="step-style">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <h3><i class="fas fa-layer-group"></i> Сложность проекта</h3>
+                    </div>
+                    <div class="step-content">
+                        <div class="style-selector">
+                            <div class="style-option active" data-style="easy" data-multiplier="1">
+                                <div class="style-icon">
+                                    <i class="fas fa-leaf"></i>
+                                </div>
+                                <h4>Лёгкая</h4>
+                                <p>Средневековый, простые формы</p>
+                                <div class="style-multiplier">×1.0</div>
+                            </div>
+                            
+                            <div class="style-option" data-style="medium" data-multiplier="1.4">
+                                <div class="style-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h4>Средняя</h4>
+                                <p>Фэнтези, средняя детализация</p>
+                                <div class="style-multiplier">×1.4</div>
+                            </div>
+                            
+                            <div class="style-option" data-style="hard" data-multiplier="2">
+                                <div class="style-icon">
+                                    <i class="fas fa-gem"></i>
+                                </div>
+                                <h4>Высокая</h4>
+                                <p>Готический, высокая детализация</p>
+                                <div class="style-multiplier">×2.0</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="price-item">
-                        <div class="price-info">
-                            <h4>Средний стиль</h4>
-                            <p class="price-desc">Фэнтези стиль</p>
-                        </div>
-                        <div class="price-amount">
-                            <span>1 750</span><span class="currency">₽</span>
-                        </div>
+                </div>
+                
+                <!-- Шаг 3: Выбор размера -->
+                <div class="calc-step" id="step-size">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <h3><i class="fas fa-expand-alt"></i> Размер проекта</h3>
                     </div>
-                    <div class="price-item featured">
-                        <div class="price-info">
-                            <h4>Тяжёлый стиль</h4>
-                            <p class="price-desc">Готический стиль</p>
-                        </div>
-                        <div class="price-amount">
-                            <span>2 500</span><span class="currency">₽</span>
+                    <div class="step-content">
+                        <div class="size-selector">
+                            <div class="size-display">
+                                <div class="size-value" id="sizeValue">100×100</div>
+                                <div class="size-info" id="sizeInfo">базовый размер</div>
+                            </div>
+                            
+                            <div class="size-slider">
+                                <div class="slider-container">
+                                    <input type="range" id="sizeSlider" min="100" max="1000" step="100" value="100">
+                                    <div class="slider-markers">
+                                        <div class="slider-marker" style="left: 0%"></div>
+                                        <div class="slider-marker" style="left: 11.11%"></div>
+                                        <div class="slider-marker" style="left: 22.22%"></div>
+                                        <div class="slider-marker" style="left: 33.33%"></div>
+                                        <div class="slider-marker" style="left: 44.44%"></div>
+                                        <div class="slider-marker" style="left: 55.55%"></div>
+                                        <div class="slider-marker" style="left: 66.66%"></div>
+                                        <div class="slider-marker" style="left: 77.77%"></div>
+                                        <div class="slider-marker" style="left: 88.88%"></div>
+                                        <div class="slider-marker" style="left: 100%"></div>
+                                    </div>
+                                </div>
+                                <div class="slider-labels">
+                                    <span>100</span>
+                                    <span>200</span>
+                                    <span>300</span>
+                                    <span>400</span>
+                                    <span>500</span>
+                                    <span>600</span>
+                                    <span>700</span>
+                                    <span>800</span>
+                                    <span>900</span>
+                                    <span>1000</span>
+                                </div>
+                            </div>
+                            
+                            <div class="size-buttons">
+                                <button class="size-btn active" data-size="100" data-price="1250">100×100</button>
+                                <button class="size-btn" data-size="200" data-price="2500">200×200</button>
+                                <button class="size-btn" data-size="300" data-price="4250">300×300</button>
+                                <button class="size-btn" data-size="400" data-price="6250">400×400</button>
+                                <button class="size-btn" data-size="500" data-price="8500">500×500</button>
+                                <button class="size-btn" data-size="1000" data-price="22500">1000×1000</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Хабы -->
-            <div class="pricing-table animate-on-scroll">
-                <div class="pricing-header">
-                    <div class="pricing-icon">
-                        <i class="fas fa-compass"></i>
-                    </div>
-                    <h3>Хабы</h3>
-                    <p class="pricing-subtitle">Размер 50×50 блоков</p>
+            <!-- Результат расчета -->
+            <div class="calculator-result">
+                <div class="result-header">
+                    <h3><i class="fas fa-calculator"></i> Результат</h3>
+                    <div class="result-badge" id="calcStatus">РАССЧИТАТЬ</div>
                 </div>
-                <div class="pricing-content">
-                    <div class="price-item">
-                        <div class="price-info">
-                            <h4>Лёгкий стиль</h4>
-                            <p class="price-desc">Средневековый стиль</p>
+                <div class="result-content">
+                    <div class="result-breakdown">
+                        <div class="breakdown-item">
+                            <span>Тип проекта:</span>
+                            <span id="resultType">Спавн</span>
                         </div>
-                        <div class="price-amount">
-                            <span>750</span><span class="currency">₽</span>
+                        <div class="breakdown-item">
+                            <span>Сложность:</span>
+                            <span id="resultStyle">Лёгкая</span>
                         </div>
-                    </div>
-                    <div class="price-item">
-                        <div class="price-info">
-                            <h4>Средний стиль</h4>
-                            <p class="price-desc">Фэнтези стиль</p>
+                        <div class="breakdown-item">
+                            <span>Размер:</span>
+                            <span id="resultSize">100×100 блоков</span>
                         </div>
-                        <div class="price-amount">
-                            <span>1 250</span><span class="currency">₽</span>
+                        <div class="breakdown-item">
+                            <span>Базовая цена:</span>
+                            <span id="resultBasePrice">1 250₽</span>
                         </div>
-                    </div>
-                    <div class="price-item">
-                        <div class="price-info">
-                            <h4>Тяжёлый стиль</h4>
-                            <p class="price-desc">Готический стиль</p>
+                        <div class="breakdown-item">
+                            <span>Цена за размер:</span>
+                            <span id="resultSizePrice">1 250₽</span>
                         </div>
-                        <div class="price-amount">
-                            <span>2 000</span><span class="currency">₽</span>
+                        <div class="breakdown-item">
+                            <span>Множитель сложности:</span>
+                            <span id="resultMultiplier">×1.0</span>
                         </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Другие услуги -->
-            <div class="pricing-table animate-on-scroll">
-                <div class="pricing-header">
-                    <div class="pricing-icon">
-                        <i class="fas fa-gamepad"></i>
-                    </div>
-                    <h3>Другие услуги</h3>
-                    <p class="pricing-subtitle">Специализированные проекты</p>
-                </div>
-                <div class="pricing-content">
-                    <div class="price-item">
-                        <div class="price-info">
-                            <h4>Карты для мини-игр</h4>
-                            <p class="price-desc">BedWars, Eggwars, Skywars</p>
-                        </div>
-                        <div class="price-amount">
-                            <span>1 750</span><span class="currency">₽</span>
+                        <div class="breakdown-divider"></div>
+                        <div class="breakdown-total">
+                            <span>Примерная стоимость:</span>
+                            <span class="total-price" id="resultTotal">1 250₽</span>
                         </div>
                     </div>
-                    <div class="price-item">
-                        <div class="price-info">
-                            <h4>Данжи и подземелья</h4>
-                            <p class="price-desc">100×100 + сложность</p>
-                        </div>
-                        <div class="price-amount">
-                            <span>1 750</span><span class="currency">₽</span>
-                        </div>
+                    
+                    <div class="result-actions">
+                        <button class="btn btn-primary btn-calculate" id="calculateBtn">
+                            <i class="fas fa-calculator"></i> Рассчитать стоимость
+                        </button>
+                        <a href="#contact" class="btn btn-order" id="orderBtn">
+                            <i class="fas fa-shopping-cart"></i> Заказать проект
+                        </a>
                     </div>
-                    <div class="price-item featured">
-                        <div class="price-info">
-                            <h4>РПГ-локации</h4>
-                            <p class="price-desc">Проработанные 100×100</p>
-                        </div>
-                        <div class="price-amount">
-                            <span>2 000</span><span class="currency">₽</span>
+                    
+                    <div class="result-note">
+                        <i class="fas fa-info-circle"></i>
+                        <div class="note-text">
+                            <p><strong>Цена не окончательная!</strong></p>
+                            <p>Окончательная стоимость может отличаться в зависимости от детализации, сложности интерьеров, дополнительных требований и индивидуальных пожеланий заказчика.</p>
+                            <p>Для получения точного расчета свяжитесь с нами через Telegram или FunPay.</p>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Прочее -->
-            <div class="pricing-table animate-on-scroll">
-                <div class="pricing-header">
-                    <div class="pricing-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h3>Прочее</h3>
-                    <p class="pricing-subtitle">Индивидуальные проекты</p>
-                </div>
-                <div class="pricing-content">
-                    <div class="price-item featured">
-                        <div class="price-info">
-                            <h4>Индивидуальная карта</h4>
-                            <p class="price-desc">Сюжетные, паркур, приключения</p>
-                        </div>
-                        <div class="price-amount">
-                            <span>3 000</span><span class="currency">₽</span>
-                        </div>
-                    </div>
-                    <div class="price-item">
-                        <div class="price-info">
-                            <h4>Майнтейм карты</h4>
-                            <p class="price-desc">Уникальные игровые миры</p>
-                        </div>
-                        <div class="price-amount">
-                            <span>2 500</span><span class="currency">₽</span>
-                        </div>
-                    </div>
-                    <div class="price-item">
-                        <div class="price-info">
-                            <h4>Индивидуальный проект</h4>
-                            <p class="price-desc">Обсуждайте с менеджером</p>
-                        </div>
-                        <div class="price-amount">
-                            <span>Индив.</span><span class="currency">цена</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="pricing-note animate-on-scroll">
-            <div class="note-icon">
-                <i class="fas fa-info-circle"></i>
-            </div>
-            <div class="note-content">
-                <h4>Важная информация</h4>
-                <p>Стоимость зависит от размера проекта. Например, спавн 200×200 блоков будет стоить от 2 500₽. 
-                Цена также варьируется в зависимости от сложности, детализации и индивидуальных требований заказчика.</p>
-                <p><strong>Индивидуальные проекты:</strong> Для уникальных карт с сюжетом, паркуром, приключениями или других нестандартных задач - свяжитесь с менеджером TzStudio в Telegram или FunPay для обсуждения деталей и расчета стоимости.</p>
             </div>
         </div>
     </div>
@@ -413,6 +578,7 @@
                         <li><a href="#home">Главная</a></li>
                         <li><a href="#about">О нас</a></li>
                         <li><a href="#pricing">Цены</a></li>
+                        <li><a href="#calculator">Калькулятор стоимости</a></li>
                         <li><a href="#portfolio">Портфолио</a></li>
                         <li><a href="#contact">Контакты</a></li>
                     </ul>
@@ -421,8 +587,8 @@
                 <div class="footer-info">
                     <h3>Информация</h3>
                     <div class="info-item">
-                        <i class="fas fa-calendar-alt"></i>
-                        <span>Работаем с 2021 года</span>
+                        <i class="fas fa-calculator"></i>
+                        <span>Используйте калькулятор для расчета стоимости</span>
                     </div>
                     <div class="info-item">
                         <i class="fas fa-gamepad"></i>
@@ -458,5 +624,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
-
